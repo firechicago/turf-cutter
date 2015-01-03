@@ -35,10 +35,10 @@ feature 'user creates a voter', %(
 
       click_button 'Submit'
       expect(page).to have_content('Error')
-      expect(page).to_not have_content("First name can't be blank")
-      expect(page).to_not have_content("Address1 can't be blank")
-      expect(page).to_not have_content("City can't be blank")
-      expect(page).to_not have_content("State can't be blank")
-      expect(page).to_not have_content("Zip can't be blank")
+      expect(page).to have_content("First name can't be blank")
+      expect(page).to have_content("Address1 can't be blank")
+      expect(page).to have_content("City can't be blank")
+      expect(page).to have_content("State can't be blank")
+      expect(page).to have_content("Zip can't be blank")
     end
   end

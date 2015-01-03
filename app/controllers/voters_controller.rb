@@ -14,8 +14,8 @@ class VotersController < ApplicationController
       redirect_to voter_path(@voter)
     else
       flash[:notice] = "Error"
-      @errors = voter.errors.full_messages
-      render "voter#new"
+      @errors = @voter.errors.full_messages
+      render "/voters/new"
     end
   end
 
