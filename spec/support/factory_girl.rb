@@ -7,4 +7,12 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
+  factory :voter do
+    sequence(:first_name) { |n| "John #{n}" }
+    last_name "Doe"
+    sequence(:address1) { |n| "#{n} Somerville Ave." }
+    city "Somerville"
+    state "MA"
+    zip "02143"
+  end
 end
