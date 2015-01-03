@@ -16,8 +16,8 @@ feature 'user creates a voter', %(
 
       visit new_voter_path
 
-      fill_in 'First Name', with: "John Q."
-      fill_in 'Last Name', with: "Public"
+      fill_in 'First name', with: "John Q."
+      fill_in 'Last name', with: "Public"
       fill_in "Address1", with: "123 Main St."
       fill_in "Address2", with: "Apartment 1"
       fill_in "City", with: "Anytown"
