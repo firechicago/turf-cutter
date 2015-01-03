@@ -1,0 +1,67 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/christopherwand/development/turf_cutter/app/models/voter.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/christopherwand/development/turf_cutter/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/christopherwand/development/turf_cutter/app/controllers/homes_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/christopherwand/development/turf_cutter/app/controllers/voters_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        2,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1420319456
+  }
+}
