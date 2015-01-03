@@ -2,5 +2,8 @@
 language: ruby
 rvm:
   - "2.0.0"
+
+before_script:
+  - psql -c 'create database turf_cutter_test;' -U postgres
 # uncomment this line if your project needs to run something other than `rake`:
-script: bundle exec rake spec
+# script: bundle exec rake
