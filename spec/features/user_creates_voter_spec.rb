@@ -31,6 +31,8 @@ feature 'user creates a voter', %(
     end
 
     scenario 'specify invalid information' do
+      sign_in_as(FactoryGirl.create(:user))
+
       visit new_voter_path
 
       click_button 'Submit'
