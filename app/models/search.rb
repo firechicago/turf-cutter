@@ -3,6 +3,10 @@ class Search < ActiveRecord::Base
     @voters ||= find_voters
   end
 
+  def num_voters
+    voters.length
+  end
+
   private
 
   def find_voters
