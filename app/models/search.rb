@@ -9,16 +9,28 @@ class Search < ActiveRecord::Base
 
   private
 
-  def find_voters
-    voters = Voter.order(:last_name)
-    voters = voters.where("first_name like ?", "%#{first_name}%") if first_name.present?
-    voters = voters.where("last_name like ?", "%#{last_name}%") if last_name.present?
-    voters = voters.where("address1 like ?", "%#{address1}%") if address1.present?
-    voters = voters.where("address2 like ?", "%#{address2}%") if address2.present?
-    voters = voters.where("city like ?", "%#{city}%") if city.present?
-    voters = voters.where("state like ?", "%#{state}%") if state.present?
-    voters = voters.where("zip like ?", "%#{zip}%") if zip.present?
+  def self.fields
+    [
+      :first_name,
+      :last_name,
+      :address1,
+      :address2,
+      :city,
+      :state,
+      :zip
+    ]
+  end
 
+  def find_voters
+    voters = nil
+    Search.fields.each do |field|
+      next unless send(field).present?
+      if voters.nil?
+        voters = Voter.where("#{field} like ?", "%#{send(field)}%")
+      else
+        voters = voters.where("#{field} like ?", "%#{send(field)}%")
+      end
+    end
     voters
   end
 end
