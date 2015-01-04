@@ -35,6 +35,12 @@ class VotersController < ApplicationController
     end
   end
 
+  def destroy
+    Voter.find(params[:id]).destroy
+    flash[:notice] = "Voter deleted"
+    redirect_to root_path
+  end
+
   private
 
   def voter_params
