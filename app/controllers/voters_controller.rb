@@ -19,6 +19,22 @@ class VotersController < ApplicationController
     end
   end
 
+  def edit
+    @voter = Voter.find(params[:id])
+  end
+
+  def update
+    @voter = Voter.update(params[:id], voter_params)
+    if @voter.errors.any?
+      flash[:notice] = "Error"
+      @errors = @voter.errors.full_messages
+      render "/voters/edit"
+    else
+      flash[:notice] = "Voter Updated"
+      redirect_to voter_path(@voter)
+    end
+  end
+
   private
 
   def voter_params
