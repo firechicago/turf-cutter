@@ -17,22 +17,22 @@ So that I can find voters to contact
   end
 
   scenario 'finds a single record' do
-    visit search_voter_path
+    visit new_search_path
 
     fill_in 'First name', with: @voters[0].first_name
 
-    click_button 'Submit'
+    click_button 'Search'
 
     expect(page).to have_content('1 voter found')
     expect(page).to have_content(@voters[0].first_name)
   end
 
   scenario 'finds multiple records' do
-    visit search_voter_path
+    visit new_search_path
 
     fill_in 'First name', with: 'John'
 
-    click_button 'Submit'
+    click_button 'Search'
 
     expect(page).to have_content('10 voters found')
     @voters.each do |voter|
@@ -41,11 +41,11 @@ So that I can find voters to contact
   end
 
   scenario 'finds no records' do
-    visit search_voter_path
+    visit new_search_path
 
     fill_in 'First name', with: 'Zaphod Beeblebrox'
 
-    click_button 'Submit'
+    click_button 'Search'
 
     expect(page).to have_content('No voters found')
     expect(page).to_not have_content(@voters[0].first_name)

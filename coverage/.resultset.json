@@ -9,6 +9,28 @@
         null,
         null
       ],
+      "/Users/christopherwand/development/turf_cutter/app/models/search.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null
+      ],
       "/Users/christopherwand/development/turf_cutter/app/models/voter.rb": [
         1,
         null,
@@ -90,8 +112,35 @@
         null,
         null,
         null
+      ],
+      "/Users/christopherwand/development/turf_cutter/app/controllers/searches_controller.rb": [
+        1,
+        1,
+        3,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ]
     },
-    "timestamp": 1420391763
+    "timestamp": 1420397138
   }
 }
