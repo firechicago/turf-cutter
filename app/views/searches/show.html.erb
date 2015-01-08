@@ -1,3 +1,16 @@
 <% @search.voters.each do |voter| %>
   <%= link_to voter.full_name, voter %>
 <% end %>
+
+<%= form_for @list do |f| %>
+
+<div>
+  <%= f.label :name, "List Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<%= f.hidden_field :search_id, value: @search.id %>
+
+<%= f.submit "Save this list" %>
+
+<% end %>
