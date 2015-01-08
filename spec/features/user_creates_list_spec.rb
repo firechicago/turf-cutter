@@ -28,4 +28,18 @@ So that I can keep track of voters
       expect(page).to have_content(voter.full_name)
     end
   end
+  scenario "does not enter a list name" do
+    sign_in_as(FactoryGirl.create(:user))
+    @voters = FactoryGirl.create_list(:voter, 10)
+    visit new_search_path
+
+    fill_in "First name", with: "John"
+
+    click_button "Search"
+
+    click_button "Save this list"
+
+    expect(page).to have_content("Save failed")
+
+  end
 end
