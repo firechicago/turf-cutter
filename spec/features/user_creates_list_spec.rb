@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'user saves a list of voters', %(
+feature "user saves a list of voters", %(
 As a signed up user
 I want to save a list of voters
 So that I can keep track of voters
@@ -10,14 +10,14 @@ So that I can keep track of voters
   # [ ] The user must supply a name for the list
   # [ ] The user is then taken to a page showing those voters
 
-  scenario 'searches and saves a page' do
+  scenario "searches and saves a page" do
     sign_in_as(FactoryGirl.create(:user))
     @voters = FactoryGirl.create_list(:voter, 10)
     visit new_search_path
 
-    fill_in 'First name', with: 'John'
+    fill_in "First name", with: "John"
 
-    click_button 'Search'
+    click_button "Search"
 
     fill_in "List Name", with: "Sample list"
     click_button "Save this list"
