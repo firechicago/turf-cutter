@@ -1,17 +1,17 @@
 class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
-    search = Search.find(params[:list][:search_id])
+    @search = Search.find(params[:list][:search_id])
     if @list.save
-      search.voters.each do |voter|
+      @search.voters.each do |voter|
         ListMembership.create(voter_id: voter.id, list_id: @list.id)
       end
       flash[:notice] = "List saved"
       redirect_to list_path(@list)
     else
-      flash[:notice] = "Error"
-      @errors = @voter.errors.full_messages
-      render "search#show"
+      flash[:notice] = "Save failed"
+      @errors = @list.errors.full_messages
+      render "/searches/show"
     end
   end
 
