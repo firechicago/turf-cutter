@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :lists, only: [:create, :show, :index, :update, :destroy]
 
   resources :searches
+
+  resources :list_memberships, only: [:create, :destroy]
 end
