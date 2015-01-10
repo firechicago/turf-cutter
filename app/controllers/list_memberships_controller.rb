@@ -5,6 +5,14 @@ class ListMembershipsController < ApplicationController
     redirect_to list_path(list_membership.list)
   end
 
+  def destroy
+    list_membership = ListMembership.find(params[:id])
+    list = list_membership.list
+    list_membership.destroy
+    flash[:notice] = "Voter removed"
+    redirect_to list_path(list)
+  end
+
   private
 
   def list_membership_params
