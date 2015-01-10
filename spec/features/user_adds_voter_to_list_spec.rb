@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'user adds a voter to a list', %(
+feature "user adds a voter to a list", %(
 As a signed up user
 I want to add a voter to a list
 So that I can manually add people who weren't captured by the initial search
@@ -11,7 +11,7 @@ So that I can manually add people who weren't captured by the initial search
   # [ ] The user then receives a confirmation message and is taken to the
   #     list page
 
-  scenario 'adds voter to list' do
+  scenario "adds voter to list" do
     sign_in_as(FactoryGirl.create(:user))
     @voters = FactoryGirl.create_list(:voter, 10)
     visit new_search_path

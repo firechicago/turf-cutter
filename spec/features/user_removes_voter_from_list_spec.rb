@@ -1,16 +1,16 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'user removes a voter from a list', %(
+feature "user removes a voter from a list", %(
 As a signed up user
 I want to remove a voter from a list
-So that I can manually remove people who shouldn't be contacted
+So that I can manually remove people who shouldn"t be contacted
 ) do
   # Acceptance Criteria
   # [ ] A user can delete a voter from a lists show page
   # [ ] The user then receives a confirmation message and is returned to the
   #     list page
 
-  scenario 'removes voter from list' do
+  scenario "removes voter from list" do
     sign_in_as(FactoryGirl.create(:user))
     FactoryGirl.create_list(:voter, 10)
     visit new_search_path
