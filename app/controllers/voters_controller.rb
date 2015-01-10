@@ -1,6 +1,9 @@
 class VotersController < ApplicationController
   def show
     @voter = Voter.find(params[:id])
+    @list_membership = ListMembership.new
+    @lists = []
+    List.all.each { |list| @lists << [list.name, list.id] }
   end
 
   def new

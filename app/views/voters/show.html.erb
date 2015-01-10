@@ -1,4 +1,4 @@
-<h3><%= @voter.first_name + " " + @voter.last_name %></h3>
+<h3><%= @voter.full_name %></h3>
 
 <p><%= @voter.address1 %><br>
   <%= @voter.address2 %><br>
@@ -6,3 +6,10 @@
   <%= @voter.state %><br>
   <%= @voter.zip %><br>
 </p>
+
+<%= form_for @list_membership do |f| %>
+  <%= f.label :list_id, "List" %>
+  <%= f.select :list_id, @lists %>
+  <%= f.hidden_field :voter_id, value: @voter.id %>
+  <%= f.submit "Add to list" %>
+<% end %>

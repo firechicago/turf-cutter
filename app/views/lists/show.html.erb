@@ -1,3 +1,8 @@
 <% @list.voters.each do |voter| %>
   <%= link_to voter.full_name, voter %>
+  <%= link_to "Remove #{voter.full_name} from this list",
+    list_membership_path(ListMembership.where(
+                              voter_id: voter.id,
+                              list_id: @list.id)[0]),
+    method: :delete, data:{ confirm: 'Are you sure?' } %>
 <% end %>
