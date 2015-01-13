@@ -19,6 +19,11 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
 
+  def map_view
+    data = List.find(params[:id]).to_geojson_array
+    @geojson = ActiveSupport::JSON.encode(data)
+  end
+
   private
 
   def list_params
