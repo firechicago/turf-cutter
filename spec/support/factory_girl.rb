@@ -14,6 +14,8 @@ FactoryGirl.define do
     city "Somerville"
     state "MA"
     zip "02143"
+    latitude 42.3927374
+    longitude(-71.0107239)
   end
 
   factory :list do

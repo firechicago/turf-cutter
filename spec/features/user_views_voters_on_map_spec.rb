@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user saves a list of voters", %(
+feature "user views a list on a map", %(
 As a signed up user
 I want to view a list of voters on a map
 So that I can see where they are located
@@ -12,15 +12,9 @@ So that I can see where they are located
     sign_in_as(FactoryGirl.create(:user))
     list = FactoryGirl.create(:list)
     visit list_path(list)
-    binding.pry
 
-    click_link "View this list as a map"
+    click_link "View this list on a map"
 
-    fill_in "List Name", with: "Sample list"
-    click_button "Save this list"
-
-    list.voters.each do |voter|
-      expect(page).to have_content(voter.full_name)
-    end
+    expect(page).to have_content("Save these turfs")
   end
 end
