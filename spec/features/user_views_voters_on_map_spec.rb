@@ -17,4 +17,11 @@ So that I can see where they are located
 
     expect(page).to have_content("Save these turfs")
   end
+
+  scenario "user not signed in" do
+    FactoryGirl.create(:list)
+    visit list_path(List.first)
+
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
+  end
 end

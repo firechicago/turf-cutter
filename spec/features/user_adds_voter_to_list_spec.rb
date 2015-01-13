@@ -13,23 +13,20 @@ So that I can manually add people who weren't captured by the initial search
 
   scenario "adds voter to list" do
     sign_in_as(FactoryGirl.create(:user))
-    @voters = FactoryGirl.create_list(:voter, 10)
-    visit new_search_path
-
-    fill_in "First name", with: "John"
-
-    click_button "Search"
-
-    fill_in "List Name", with: "Sample list"
-    click_button "Save this list"
-
+    list = FactoryGirl.create(:list)
     new_voter = FactoryGirl.create(:voter)
+
     visit voter_path(new_voter)
 
-    select "Sample list", from: "List"
+    select list.name, from: "List"
     click_button "Add to list"
 
     expect(page).to have_content("Voter added to Sample list")
     expect(page).to have_content(new_voter.full_name)
+  end
+  scenario "user not signed in" do
+    visit voter_path(FactoryGirl.create(:voter))
+
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
 end

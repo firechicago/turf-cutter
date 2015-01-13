@@ -12,17 +12,9 @@ So that I can manually remove people who shouldn"t be contacted
 
   scenario "removes voter from list" do
     sign_in_as(FactoryGirl.create(:user))
-    FactoryGirl.create_list(:voter, 10)
-    visit new_search_path
+    list = FactoryGirl.create(:list)
+    visit list_path(list)
 
-    fill_in "First name", with: "John"
-
-    click_button "Search"
-
-    fill_in "List Name", with: "Sample list"
-    click_button "Save this list"
-
-    list = List.first
     voter = list.voters[0]
     list_count = list.voters.length
 
@@ -31,5 +23,12 @@ So that I can manually remove people who shouldn"t be contacted
     expect(page).to have_content("Voter removed")
     expect(page).to_not have_content(voter.full_name)
     expect(List.find(list.id).voters.length).to eq(list_count - 1)
+  end
+
+  scenario "user not signed in" do
+    list = FactoryGirl.create(:list)
+    visit list_path(list)
+
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
 end
