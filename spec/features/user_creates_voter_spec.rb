@@ -43,4 +43,9 @@ feature 'user creates a voter', %(
       expect(page).to have_content("State can't be blank")
       expect(page).to have_content("Zip can't be blank")
     end
+    scenario "user not signed in" do
+      visit new_voter_path
+
+      expect(page).to have_content("You need to sign in or sign up before continuing.")
+    end
   end

@@ -41,4 +41,9 @@ So that I can update that voter with new contact information
     expect(page).to have_content('Error')
     expect(page).to have_content("First name can't be blank")
   end
+  scenario "user not signed in" do
+    visit edit_voter_path(FactoryGirl.create(:voter))
+
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
+  end
 end

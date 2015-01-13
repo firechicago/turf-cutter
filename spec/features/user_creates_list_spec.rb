@@ -42,4 +42,9 @@ So that I can keep track of voters
     expect(page).to have_content("Save failed")
 
   end
+  scenario "user not signed in" do
+    visit new_search_path
+
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
+  end
 end

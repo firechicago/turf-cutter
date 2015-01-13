@@ -50,4 +50,11 @@ So that I can find voters to contact
     expect(page).to have_content('No voters found')
     expect(page).to_not have_content(@voters[0].first_name)
   end
+
+  scenario "user not signed in" do
+    click_link("Sign Out")
+    visit new_search_path
+
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
+  end
 end
