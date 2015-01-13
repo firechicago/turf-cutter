@@ -71,8 +71,11 @@
 
   function showPolygonArea(e) {
     var new_layer = map.addLayer(e.layer);
-    debugger;
-    alert(leafletPip.pointInLayer(marker.geometry.coordinates, new_layer));
+    if (leafletPip.pointInLayer(marker.geometry.coordinates, new_layer).length > 0) {
+      alert("The point is in your shape");
+    } else {
+      alert("The point is outside your shape");
+    };
   }
 </script>
 

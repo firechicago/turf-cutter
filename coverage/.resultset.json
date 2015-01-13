@@ -63,7 +63,7 @@
       "/Users/christopherwand/development/turf_cutter/app/models/voter.rb": [
         1,
         1,
-        177,
+        197,
         null,
         null,
         1,
@@ -144,7 +144,7 @@
         null,
         null,
         1,
-        5,
+        6,
         null,
         null,
         1,
@@ -240,6 +240,6 @@
         null
       ]
     },
-    "timestamp": 1421077507
+    "timestamp": 1421161396
   }
 }
