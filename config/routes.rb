@@ -15,6 +15,6 @@ Rails.application.routes.draw do
 
     resources :list_memberships, only: [:create, :destroy]
 
-    post "map_lists_create", to: "lists#map_create"
+    post "map_lists_create", to: "turfs#create"
   end
 end
