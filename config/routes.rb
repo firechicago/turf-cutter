@@ -14,5 +14,7 @@ Rails.application.routes.draw do
     resources :searches
 
     resources :list_memberships, only: [:create, :destroy]
+
+    post "turfs", to: "turfs#create"
   end
 end

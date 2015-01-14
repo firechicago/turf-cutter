@@ -7,12 +7,12 @@
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
 <style>
 body { margin:0; padding:0; }
-#map { position:absolute; height: 80%; width:100%; }
+#map { position:absolute; height: 100%; width:100%; }
 </style>
 
 <div id='map'></div>
 
-<a>Save these turfs</a>
+<div class='save button right'>Save these turfs</div>
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2hyaXN3YW5kIiwiYSI6Ii15YVZETmcifQ.iwFzK-RnFcNDU_msz06eQQ';
@@ -37,16 +37,42 @@ var voters = <%= @geojson.html_safe %>
 
 var votersLayer = L.mapbox.featureLayer(voters).addTo(map);
 
+var lists = [];
+
 map.fitBounds(votersLayer.getBounds());
 
-map.on('draw:created', showPolygonArea);
+map.on('draw:created', findVoters);
 
-function showPolygonArea(e) {
-  var new_layer = map.addLayer(e.layer);
-  if (leafletPip.pointInLayer(marker.geometry.coordinates, new_layer).length > 0) {
-    alert("The point is in one of your shapes");
-  } else {
-    alert("The point is outside your shapes");
+function findVoters(e) {
+  var newTurf = map.addLayer(e.layer);
+  array = []
+  for (var i = 0; i < voters.length; i++) {
+    if (leafletPip.pointInLayer(voters[i].geometry.coordinates, newTurf, true)[0] === e.layer) {
+      array.push(voters[i]);
+    };
   };
-}
+  lists.push(array)
+};
+
+$(document).ready(function(){
+  $(".save").click(function(e){
+    e.preventDefault();
+    var listsName = prompt("Enter a name for these lists");
+    var listsData = [];
+    for (var i = 0; i < lists.length; i++) {
+      var list = lists[i];
+      var listName = listsName + " Turf " + (i + 1);
+      var voterIDs =[];
+      for (var j = 0; j < list.length; j++) {
+        voter = list[j];
+        voterIDs.push(voter.properties.voter_id);
+      };
+      listsData.push({ name: listName, voter_ids: voterIDs });
+    }
+    $.ajax({type: "POST",
+      url: "/turfs",
+      data: { lists: listsData }
+    })
+  })
+})
 </script>

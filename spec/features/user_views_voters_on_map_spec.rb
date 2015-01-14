@@ -19,8 +19,8 @@ So that I can see where they are located
   end
 
   scenario "user not signed in" do
-    FactoryGirl.create(:list)
-    visit list_path(List.first)
+    list = FactoryGirl.create(:list)
+    visit list_path(list)
 
     expect(page).to have_content("You need to sign in or sign up before continuing.")
   end

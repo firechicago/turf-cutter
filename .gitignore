@@ -13,3 +13,4 @@
 /tmp
 .env
 /map_tests/
+/coverage/*

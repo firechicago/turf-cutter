@@ -15,6 +15,7 @@ class List < ActiveRecord::Base
         properties: {
           title: voter.full_name,
           description: voter.full_address,
+          voter_id: voter.id,
           "marker-size" => "medium",
           "marker-color" => "#FF0000"
         }
