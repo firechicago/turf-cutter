@@ -57,20 +57,22 @@ function findVoters(e) {
 $(document).ready(function(){
   $(".save").click(function(e){
     e.preventDefault();
-    var listsName = prompt("Enter a name for these lists")
+    var listsName = prompt("Enter a name for these lists");
+    var listsData = []
     for (var i = 0; i < lists.length; i++) {
       var list = lists[i];
       var listName = listsName + " Turf " + (i + 1);
       var voterIDs =[];
-      for (var i = 0; i < list.length; i++) {
-        voter = list[i];
+      for (var j = 0; j < list.length; j++) {
+        voter = list[j];
         voterIDs.push(voter.properties.voter_id);
       };
-      $.ajax({type: "POST",
-        url: "/map_lists_create",
-        data: { list: { name: listName, voter_ids: voterIDs } }
-      })
+      listsData.push({ name: listName, voter_ids: voterIDs });
     }
+    $.ajax({type: "POST",
+      url: "/map_lists_create",
+      data: { lists: listsData }
+    })
   })
 })
 </script>

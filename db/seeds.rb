@@ -5,3 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require "csv"
+voters_data = CSV.read("db/seed_addresses.csv")
+
+voters_data.each do |voter_data|
+  start = Time.now
+  voter = Voter.new
+  voter.address1 = voter_data[0]
+  voter.address2 = voter_data[1]
+  voter.city = voter_data[2]
+  voter.state = voter_data[3]
+  voter.zip = "0" + voter_data[4]
+  voter.first_name = Faker::Name.first_name
+  voter.last_name = Faker::Name.last_name
+  elapsed = Time.now - start
+  sleep([0.21 - elapsed, 0].max)
+  voter.geocode
+  puts "#{voter.full_name} created" if voter.save
+end
