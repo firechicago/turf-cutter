@@ -24,6 +24,10 @@ class ListsController < ApplicationController
     @geojson = ActiveSupport::JSON.encode(data)
   end
 
+  def map_create
+    # binding.pry
+  end
+
   private
 
   def list_params

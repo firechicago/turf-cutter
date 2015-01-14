@@ -14,5 +14,7 @@ Rails.application.routes.draw do
     resources :searches
 
     resources :list_memberships, only: [:create, :destroy]
+
+    post "map_lists_create", to: "lists#map_create"
   end
 end

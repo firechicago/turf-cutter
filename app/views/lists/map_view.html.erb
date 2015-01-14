@@ -7,12 +7,12 @@
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
 <style>
 body { margin:0; padding:0; }
-#map { position:absolute; height: 80%; width:100%; }
+#map { position:absolute; height: 100%; width:100%; }
 </style>
 
 <div id='map'></div>
 
-<a>Save these turfs</a>
+<div class='save button right'>Save these turfs</div>
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2hyaXN3YW5kIiwiYSI6Ii15YVZETmcifQ.iwFzK-RnFcNDU_msz06eQQ';
@@ -37,6 +37,8 @@ var voters = <%= @geojson.html_safe %>
 
 var votersLayer = L.mapbox.featureLayer(voters).addTo(map);
 
+var lists = [];
+
 map.fitBounds(votersLayer.getBounds());
 
 map.on('draw:created', findVoters);
@@ -49,6 +51,26 @@ function findVoters(e) {
       array.push(voters[i]);
     };
   };
-  console.log(array)
-}
+  lists.push(array)
+};
+
+$(document).ready(function(){
+  $(".save").click(function(e){
+    e.preventDefault();
+    var listsName = prompt("Enter a name for these lists")
+    for (var i = 0; i < lists.length; i++) {
+      var list = lists[i];
+      var listName = listsName + " Turf " + (i + 1);
+      var voterIDs =[];
+      for (var i = 0; i < list.length; i++) {
+        voter = list[i];
+        voterIDs.push(voter.properties.voter_id);
+      };
+      $.ajax({type: "POST",
+        url: "/map_lists_create",
+        data: { list: { name: listName, voter_ids: voterIDs } }
+      })
+    }
+  })
+})
 </script>
