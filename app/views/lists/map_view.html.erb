@@ -44,10 +44,10 @@ map.fitBounds(votersLayer.getBounds());
 map.on('draw:created', findVoters);
 
 function findVoters(e) {
-  var new_layer = map.addLayer(e.layer);
+  var newTurf = map.addLayer(e.layer);
   array = []
   for (var i = 0; i < voters.length; i++) {
-    if (leafletPip.pointInLayer(voters[i].geometry.coordinates, new_layer, true)[0] === e.layer) {
+    if (leafletPip.pointInLayer(voters[i].geometry.coordinates, newTurf, true)[0] === e.layer) {
       array.push(voters[i]);
     };
   };
@@ -58,7 +58,7 @@ $(document).ready(function(){
   $(".save").click(function(e){
     e.preventDefault();
     var listsName = prompt("Enter a name for these lists");
-    var listsData = []
+    var listsData = [];
     for (var i = 0; i < lists.length; i++) {
       var list = lists[i];
       var listName = listsName + " Turf " + (i + 1);
@@ -70,7 +70,7 @@ $(document).ready(function(){
       listsData.push({ name: listName, voter_ids: voterIDs });
     }
     $.ajax({type: "POST",
-      url: "/map_lists_create",
+      url: "/turfs",
       data: { lists: listsData }
     })
   })
