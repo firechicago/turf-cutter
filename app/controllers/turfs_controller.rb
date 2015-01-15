@@ -7,7 +7,7 @@ class TurfsController < ApplicationController
       return
     end
     if Turf.create(params)
-      flash[:notice] = "Lists saved"
+      flash[:success] = "Lists saved"
       render js: "window.location = '#{lists_path}'"
     else
       render js: "alert('Save Failed')"
@@ -18,7 +18,7 @@ class TurfsController < ApplicationController
 
   def require_login
     unless current_user
-      flash[:notice] = "You must be signed in to do that"
+      flash[:alert] = "You must be signed in to do that"
       redirect_to root_path
     end
   end

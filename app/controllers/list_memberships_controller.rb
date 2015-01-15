@@ -1,7 +1,7 @@
 class ListMembershipsController < ApplicationController
   def create
     list_membership = ListMembership.create(list_membership_params)
-    flash[:notice] = "Voter added to #{list_membership.list.name}"
+    flash[:success] = "Voter added to #{list_membership.list.name}"
     redirect_to list_path(list_membership.list)
   end
 
@@ -9,7 +9,7 @@ class ListMembershipsController < ApplicationController
     list_membership = ListMembership.find(params[:id])
     list = list_membership.list
     list_membership.destroy
-    flash[:notice] = "Voter removed"
+    flash[:success] = "Voter removed"
     redirect_to list_path(list)
   end
 

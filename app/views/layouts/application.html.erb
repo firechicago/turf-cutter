@@ -6,7 +6,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
+
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
@@ -16,6 +16,8 @@
 
     <section class="top-bar-section">
       <ul class="right">
+        <li><%= link_to 'Lists', lists_path %></li>
+        <li><%= link_to 'Search Voters', new_search_path %></li>
         <%- if current_user -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
@@ -27,7 +29,7 @@
   </nav>
 
   <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
+    <div class="flash alert-box <%= key %>">
       <%= value %>
     </div>
   <%- end -%>

@@ -6,10 +6,10 @@ class ListsController < ApplicationController
       @search.voters.each do |voter|
         ListMembership.create(voter_id: voter.id, list_id: @list.id)
       end
-      flash[:notice] = "List saved"
+      flash[:success] = "List saved"
       redirect_to list_path(@list)
     else
-      flash[:notice] = "Save failed"
+      flash[:alert] = "Save failed"
       @errors = @list.errors.full_messages
       @voters = @search.voters.page(params[:page])
       render "/searches/show"
