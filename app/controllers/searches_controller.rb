@@ -5,6 +5,7 @@ class SearchesController < ApplicationController
 
   def create
     @search = Search.create!(search_params)
+    @voters = @search.voters.page(params[:page]) || []
     case @search.num_voters
     when 0
       flash[:notice] = "No voters found"
@@ -18,6 +19,7 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
+    @voters = @search.voters.page(params[:page])
     @list = List.new
   end
 

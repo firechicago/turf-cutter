@@ -12,7 +12,7 @@ So that I can keep track of voters
 
   scenario "searches and saves a page" do
     sign_in_as(FactoryGirl.create(:user))
-    @voters = FactoryGirl.create_list(:voter, 10)
+    @voters = FactoryGirl.create_list(:voter, 51)
     visit new_search_path
 
     fill_in "First name", with: "John"
@@ -24,10 +24,21 @@ So that I can keep track of voters
 
     expect(page).to have_content("List saved")
 
-    @voters.each do |voter|
-      expect(page).to have_content(voter.full_name)
+    @voters[0..24].each do |voter|
+      expect(page).to have_content(voter.first_name)
     end
+
+    click_link "Next"
+
+    @voters[25..49].each do |voter|
+      expect(page).to have_content(voter.first_name)
+    end
+
+    click_link "Next"
+
+    expect(page).to have_content(@voters[-1].first_name)
   end
+
   scenario "does not enter a list name" do
     sign_in_as(FactoryGirl.create(:user))
     @voters = FactoryGirl.create_list(:voter, 10)
