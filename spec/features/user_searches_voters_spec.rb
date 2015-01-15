@@ -13,7 +13,7 @@ So that I can find voters to contact
   #     effect
   before(:each) do
     sign_in_as(FactoryGirl.create(:user))
-    @voters = FactoryGirl.create_list(:voter, 10)
+    @voters = FactoryGirl.create_list(:voter, 51)
   end
 
   scenario 'finds a single record' do
@@ -34,10 +34,20 @@ So that I can find voters to contact
 
     click_button 'Search'
 
-    expect(page).to have_content('10 voters found')
-    @voters.each do |voter|
+    expect(page).to have_content('51 voters found')
+    @voters[0..24].each do |voter|
       expect(page).to have_content(voter.first_name)
     end
+
+    click_link 'Next'
+
+    @voters[25..49].each do |voter|
+      expect(page).to have_content(voter.first_name)
+    end
+
+    click_link 'Next'
+
+    expect(page).to have_content(@voters[-1].first_name)
   end
 
   scenario 'finds no records' do
