@@ -38,7 +38,7 @@ So that I can keep track of voters
 
     expect(page).to have_content(@voters[-1].first_name)
   end
-  
+
   scenario "does not enter a list name" do
     sign_in_as(FactoryGirl.create(:user))
     @voters = FactoryGirl.create_list(:voter, 10)

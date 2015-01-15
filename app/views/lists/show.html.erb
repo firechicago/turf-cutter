@@ -1,6 +1,6 @@
 <%= link_to "View this list on a map", map_view_list_path %>
 <ul>
-  <% @list.voters.each do |voter| %>
+  <% @voters.each do |voter| %>
     <li>
       <%= link_to voter.full_name, voter %>
       <%= link_to "Remove #{voter.full_name} from this list",
@@ -11,3 +11,4 @@
     </li>
   <% end %>
 </ul>
+<%= paginate @voters %>

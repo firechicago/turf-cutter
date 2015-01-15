@@ -1,6 +1,8 @@
-<% @search.voters.each do |voter| %>
+<% @voters.each do |voter| %>
   <%= link_to voter.full_name, voter %>
 <% end %>
+
+<%= paginate @voters %>
 
 <%= form_for @list do |f| %>
 

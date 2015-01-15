@@ -11,16 +11,18 @@ class ListsController < ApplicationController
     else
       flash[:notice] = "Save failed"
       @errors = @list.errors.full_messages
+      @voters = @search.voters.page(params[:page])
       render "/searches/show"
     end
   end
 
   def index
-    @lists = List.all
+    @lists = List.page params[:page]
   end
 
   def show
     @list = List.find(params[:id])
+    @voters = @list.voters.page(params[:page])
   end
 
   def map_view
