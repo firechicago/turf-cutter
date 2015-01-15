@@ -28,13 +28,13 @@ So that I can keep track of voters
       expect(page).to have_content(voter.first_name)
     end
 
-    click_link 'Next'
+    click_link "Next"
 
     @voters[25..49].each do |voter|
       expect(page).to have_content(voter.first_name)
     end
 
-    click_link 'Next'
+    click_link "Next"
 
     expect(page).to have_content(@voters[-1].first_name)
   end

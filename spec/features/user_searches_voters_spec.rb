@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'user searches voters', %(
+feature "user searches voters", %(
 As a signed up user
 I want to search on all available attributes
 So that I can find voters to contact
@@ -16,48 +16,48 @@ So that I can find voters to contact
     @voters = FactoryGirl.create_list(:voter, 51)
   end
 
-  scenario 'finds a single record' do
+  scenario "finds a single record" do
     visit new_search_path
 
-    fill_in 'First name', with: @voters[0].first_name
+    fill_in "First name", with: @voters[0].first_name
 
-    click_button 'Search'
+    click_button "Search"
 
-    expect(page).to have_content('1 voter found')
+    expect(page).to have_content("1 voter found")
     expect(page).to have_content(@voters[0].first_name)
   end
 
-  scenario 'finds multiple records' do
+  scenario "finds multiple records" do
     visit new_search_path
 
-    fill_in 'First name', with: 'John'
+    fill_in "First name", with: "John"
 
-    click_button 'Search'
+    click_button "Search"
 
-    expect(page).to have_content('51 voters found')
+    expect(page).to have_content("51 voters found")
     @voters[0..24].each do |voter|
       expect(page).to have_content(voter.first_name)
     end
 
-    click_link 'Next'
+    click_link "Next"
 
     @voters[25..49].each do |voter|
       expect(page).to have_content(voter.first_name)
     end
 
-    click_link 'Next'
+    click_link "Next"
 
     expect(page).to have_content(@voters[-1].first_name)
   end
 
-  scenario 'finds no records' do
+  scenario "finds no records" do
     visit new_search_path
 
-    fill_in 'First name', with: 'Zaphod Beeblebrox'
+    fill_in "First name", with: "Zaphod Beeblebrox"
 
-    click_button 'Search'
+    click_button "Search"
 
-    expect(page).to have_content('No voters found')
+    expect(page).to have_content("No voters found")
     expect(page).to_not have_content(@voters[0].first_name)
   end
 
