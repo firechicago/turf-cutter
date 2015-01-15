@@ -54,3 +54,4 @@ gem 'foundation-rails'
 gem 'geokit'
 gem 'faker'
 gem 'kaminari'
+gem 'rails_12factor', group: :production
