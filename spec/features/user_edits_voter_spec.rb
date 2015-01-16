@@ -24,7 +24,7 @@ So that I can update that voter with new contact information
     fill_in "State", with: "MA"
     fill_in "Zip", with: "01234"
 
-    click_button 'Submit'
+    click_button 'Update Voter'
 
     expect(page).to have_content('Voter Updated')
     expect(page).to have_content("John Q. Public")
@@ -36,7 +36,7 @@ So that I can update that voter with new contact information
     visit edit_voter_path(voter)
 
     fill_in 'First name', with: ""
-    click_button 'Submit'
+    click_button 'Update Voter'
 
     expect(page).to have_content('Error')
     expect(page).to have_content("First name can't be blank")

@@ -24,7 +24,7 @@ feature 'user creates a voter', %(
       fill_in "State", with: "MA"
       fill_in "Zip", with: "01234"
 
-      click_button 'Submit'
+      click_button 'Add this voter'
 
       expect(page).to have_content('Voter Created')
       expect(page).to have_content("John Q. Public")
@@ -35,7 +35,7 @@ feature 'user creates a voter', %(
 
       visit new_voter_path
 
-      click_button 'Submit'
+      click_button 'Add this voter'
       expect(page).to have_content('Error')
       expect(page).to have_content("First name can't be blank")
       expect(page).to have_content("Address1 can't be blank")

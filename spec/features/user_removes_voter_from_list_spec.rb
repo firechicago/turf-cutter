@@ -18,7 +18,7 @@ So that I can manually remove people who shouldn"t be contacted
     voter = list.voters[0]
     list_count = list.voters.length
 
-    click_link "Remove #{voter.full_name} from this list"
+    click_link "Remove #{voter.first_name} from this list"
 
     expect(page).to have_content("Voter removed")
     expect(page).to_not have_content(voter.full_name)
