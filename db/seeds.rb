@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require "csv"
-if Rails.env == "development"
+# if Rails.env == "development"
   voters_data = CSV.read("db/seed_addresses.csv")
 
   voters_data.each do |voter_data|
@@ -24,4 +24,4 @@ if Rails.env == "development"
     voter.geocode
     puts "#{voter.full_name} created" if voter.save
   end
-end
+# end

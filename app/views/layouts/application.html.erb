@@ -16,9 +16,10 @@
 
     <section class="top-bar-section">
       <ul class="right">
-        <li><%= link_to 'Lists', lists_path %></li>
-        <li><%= link_to 'Search Voters', new_search_path %></li>
         <%- if current_user -%>
+          <li><%= link_to 'Add a voter', new_voter_path %></li>
+          <li><%= link_to 'Lists', lists_path %></li>
+          <li><%= link_to 'Search Voters', new_search_path %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
