@@ -1,8 +1,24 @@
-<ul>
+<div class="row">
+  <div class= "small-5 columns">
+    <h1>Voter Lists</h1>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>List name</th>
+      <th>Number of Voters</th>
+      <th>List created</th>
+      <th>Last updated</th>
+    </tr>
+  </thead>
   <% @lists.each do |list| %>
-    <li>
-      <%= link_to list.name, list %>
-    </li>
+    <tr>
+      <td><%= link_to list.name, list %></td>
+      <td><%= list.voters.length %></td>
+      <td><%= list.created_at %></td>
+      <td><%= list.updated_at %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
 <%= paginate @lists %>

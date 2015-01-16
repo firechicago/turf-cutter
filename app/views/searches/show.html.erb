@@ -1,10 +1,23 @@
-<ul>
+<table>
+  <thead>
+    <tr>
+      <th>Voter Name</th>
+      <th>Street Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+    </tr>
+  </thead>
   <% @voters.each do |voter| %>
-    <li>
-      <%= link_to voter.full_name, voter %>
-    </li>
+  <tr>
+    <td><%= link_to voter.full_name, voter %></td>
+    <td><%= "#{voter.address1} #{voter.address2}" %></td>
+    <td><%= voter.city %></td>
+    <td><%= voter.state %></td>
+    <td><%= voter.zip %></td>
+  </tr>
   <% end %>
-</ul>
+</table>
 
 <%= paginate @voters %>
 

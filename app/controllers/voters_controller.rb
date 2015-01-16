@@ -14,10 +14,10 @@ class VotersController < ApplicationController
     @voter = Voter.new(voter_params)
     @voter.geocode
     if @voter.save
-      flash[:notice] = "Voter Created"
+      flash[:success] = "Voter Created"
       redirect_to voter_path(@voter)
     else
-      flash[:notice] = "Error"
+      flash[:alert] = "Error"
       @errors = @voter.errors.full_messages
       render "/voters/new"
     end
@@ -30,18 +30,18 @@ class VotersController < ApplicationController
   def update
     @voter = Voter.update(params[:id], voter_params)
     if @voter.errors.any?
-      flash[:notice] = "Error"
+      flash[:success] = "Error"
       @errors = @voter.errors.full_messages
       render "/voters/edit"
     else
-      flash[:notice] = "Voter Updated"
+      flash[:alert] = "Voter Updated"
       redirect_to voter_path(@voter)
     end
   end
 
   def destroy
     Voter.find(params[:id]).destroy
-    flash[:notice] = "Voter deleted"
+    flash[:success] = "Voter deleted"
     redirect_to root_path
   end
 

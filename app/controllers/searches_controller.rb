@@ -8,11 +8,11 @@ class SearchesController < ApplicationController
     @voters = @search.voters.page(params[:page]) || []
     case @search.num_voters
     when 0
-      flash[:notice] = "No voters found"
+      flash[:alert] = "No voters found"
     when 1
-      flash[:notice] = "1 voter found"
+      flash[:success] = "1 voter found"
     else
-      flash[:notice] = "#{@search.voters.length} voters found"
+      flash[:success] = "#{@search.voters.length} voters found"
     end
     redirect_to @search
   end

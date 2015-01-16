@@ -1,4 +1,9 @@
 <%= form_for @voter do |f| %>
+<div class="row">
+  <div class= "small-5 columns">
+    <h1>Add a new voter</h1>
+  </div>
+</div>
 <%if @voter.errors.any? %>
 <ul>
   <% @voter.errors.full_messages.each do |msg|%>
@@ -6,40 +11,48 @@
   <% end %>
 </ul>
 <% end %>
-<div>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-</div>
+<div class="row">
+  <div class= "small-5 columns">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
 
-<div>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
+  <div class= "small-5 columns left">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
 </div>
+<div class= "row">
+  <div class= "small-5 columns">
+    <div>
+      <%= f.label :address1 %>
+      <%= f.text_field :address1 %>
+    </div>
 
-<div>
-  <%= f.label :address1 %>
-  <%= f.text_field :address1 %>
+    <div>
+      <%= f.label :address2 %>
+      <%= f.text_field :address2 %>
+    </div>
+  </div>
+
+  <div class= "small-5 columns left">
+    <div>
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+
+    <div>
+      <%= f.label :state %>
+      <%= f.text_field :state %>
+    </div>
+
+    <div>
+      <%= f.label :zip %>
+      <%= f.text_field :zip %>
+    </div>
+  </div>
 </div>
-
-<div>
-  <%= f.label :address2 %>
-  <%= f.text_field :address2 %>
+<div class="row">
+<%= f.submit 'Add this voter', class: "button" %>
 </div>
-
-<div>
-  <%= f.label :city %>
-  <%= f.text_field :city %>
-</div>
-
-<div>
-  <%= f.label :state %>
-  <%= f.text_field :state %>
-</div>
-
-<div>
-  <%= f.label :zip %>
-  <%= f.text_field :zip %>
-</div>
-
-<%= f.submit 'Submit' %>
 <% end %>

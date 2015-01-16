@@ -1,15 +1,29 @@
-<h3><%= @voter.full_name %></h3>
+<div class="row">
+  <div class="small-9 columns">
+    <h3><%= @voter.full_name %></h3>
 
-<p><%= @voter.address1 %><br>
-  <%= @voter.address2 %><br>
-  <%= @voter.city %><br>
-  <%= @voter.state %><br>
-  <%= @voter.zip %><br>
-</p>
+    <p><%= @voter.address1 %><br>
+      <%= @voter.address2 %><br>
+      <%= @voter.city %><br>
+      <%= @voter.state %><br>
+      <%= @voter.zip %><br>
+    </p>
+  </div>
+</div>
 
 <%= form_for @list_membership do |f| %>
-  <%= f.label :list_id, "List" %>
-  <%= f.select :list_id, @lists %>
-  <%= f.hidden_field :voter_id, value: @voter.id %>
-  <%= f.submit "Add to list" %>
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.label :list_id, "List" %>
+      <%= f.select :list_id, @lists %>
+      <%= f.hidden_field :voter_id, value: @voter.id %>
+      <%= f.submit "Add to list", class: "button inline"%>
+    </div>
+  </div>
 <% end %>
+
+<div class="row">
+  <div class="small-3 columns">
+    <%= link_to "Edit this voter", edit_voter_path, class: "button" %>
+  </div>
+</div>

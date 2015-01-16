@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'user creates a voter', %(
+feature "user creates a voter", %(
   As a signed up user
   I want to manually create a voter
   So that I can track my campaigns contacts with that voter
@@ -11,32 +11,32 @@ feature 'user creates a voter', %(
   #     the user is taken to the voter's view page
   # [ ] If the information is invalid, the user receives an error message, and
   #     is returned to the create voter page
-    scenario 'create a valid voter' do
+    scenario "create a valid voter" do
       sign_in_as(FactoryGirl.create(:user))
 
       visit new_voter_path
 
-      fill_in 'First name', with: "John Q."
-      fill_in 'Last name', with: "Public"
+      fill_in "First name", with: "John Q."
+      fill_in "Last name", with: "Public"
       fill_in "Address1", with: "123 Main St."
       fill_in "Address2", with: "Apartment 1"
       fill_in "City", with: "Anytown"
       fill_in "State", with: "MA"
       fill_in "Zip", with: "01234"
 
-      click_button 'Submit'
+      click_button "Add this voter"
 
-      expect(page).to have_content('Voter Created')
+      expect(page).to have_content("Voter Created")
       expect(page).to have_content("John Q. Public")
     end
 
-    scenario 'specify invalid information' do
+    scenario "specify invalid information" do
       sign_in_as(FactoryGirl.create(:user))
 
       visit new_voter_path
 
-      click_button 'Submit'
-      expect(page).to have_content('Error')
+      click_button "Add this voter"
+      expect(page).to have_content("Error")
       expect(page).to have_content("First name can't be blank")
       expect(page).to have_content("Address1 can't be blank")
       expect(page).to have_content("City can't be blank")
