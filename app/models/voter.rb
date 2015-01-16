@@ -14,6 +14,10 @@ class Voter < ActiveRecord::Base
     latlng
   end
 
+  def valid_coords?
+    latitude.class == Float && longitude.class == Float
+  end
+
   validates :first_name, presence: true
   validates :address1, presence: true
   validates :city, presence: true

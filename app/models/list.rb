@@ -6,9 +6,9 @@ class List < ActiveRecord::Base
   def to_geojson_array
     array = []
     voters.each do |voter|
+      next unless voter.valid_coords?
       geojson = {
-        type: "Feature",
-        geometry: {
+        type: "Feature", geometry: {
           type: "Point",
           coordinates: [voter.longitude, voter.latitude]
         },
