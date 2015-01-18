@@ -60,5 +60,5 @@
 <h1>Upload Voters in CSV format</h1>
 <%= form_tag import_voters_path, multipart: true do %>
   <%= file_field_tag :voters_csv %>
-  <%= submit_tag "Upload Voters" %>
+  <%= submit_tag "Upload Voters", class: "button" %>
 <% end %>
