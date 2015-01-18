@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticate :user do
-    resources :voters, only: [:new, :create, :show, :edit, :update, :destroy] do
+    resources :voters, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
       collection { post :import }
     end
 

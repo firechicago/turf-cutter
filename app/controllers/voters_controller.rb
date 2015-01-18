@@ -1,4 +1,8 @@
 class VotersController < ApplicationController
+  def index
+    @voters = Voter.all.page(params[:page])
+  end
+
   def show
     @voter = Voter.find(params[:id])
     @list_membership = ListMembership.new
