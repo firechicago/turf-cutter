@@ -45,6 +45,15 @@ class VotersController < ApplicationController
     redirect_to root_path
   end
 
+  def import
+    if Voter.import(params[:voters_csv])
+      flash[:success] = "Voters successfully uploaded"
+    else
+      flash[:alert] = "There was an error reading the file you uploaded"
+    end
+    redirect_to "voters#index"
+  end
+
   private
 
   def voter_params
