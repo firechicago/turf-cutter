@@ -1,0 +1,30 @@
+<div class="row">
+  <div class= "small-5 columns">
+    <h1>All Voters</h1>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Voter Name</th>
+      <th>Street Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <% @voters.each do |voter| %>
+  <tr>
+    <td><%= link_to voter.full_name, voter %></td>
+    <td><%= "#{voter.address1} #{voter.address2}" %></td>
+    <td><%= voter.city %></td>
+    <td><%= voter.state %></td>
+    <td><%= voter.zip %></td>
+    <td>
+      <%= link_to "Edit this voter", edit_voter_path(voter), class: "button" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<%= paginate @voters %>

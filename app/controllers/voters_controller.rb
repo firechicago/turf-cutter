@@ -1,4 +1,8 @@
 class VotersController < ApplicationController
+  def index
+    @voters = Voter.all.page(params[:page])
+  end
+
   def show
     @voter = Voter.find(params[:id])
     @list_membership = ListMembership.new
@@ -43,6 +47,16 @@ class VotersController < ApplicationController
     Voter.find(params[:id]).destroy
     flash[:success] = "Voter deleted"
     redirect_to root_path
+  end
+
+  def import
+    if Voter.import(params[:voters_csv])
+      flash[:success] = "Voters successfully uploaded"
+    else
+      flash[:alert] = "There was an error reading the file you uploaded"
+    end
+    @voters = Voter.all.page(params[:page])
+    render "voters/index"
   end
 
   private

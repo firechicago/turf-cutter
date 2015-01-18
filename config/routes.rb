@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticate :user do
-    resources :voters, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :voters, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
+      collection { post :import }
+    end
 
     resources :lists, only: [:create, :show, :index, :update, :destroy] do
       member do
