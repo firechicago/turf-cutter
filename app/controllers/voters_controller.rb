@@ -16,8 +16,9 @@ class VotersController < ApplicationController
 
   def create
     @voter = Voter.new(voter_params)
-    @voter.geocode
     if @voter.save
+      @voter.geocode
+      @voter.save
       flash[:success] = "Voter Created"
       redirect_to voter_path(@voter)
     else
