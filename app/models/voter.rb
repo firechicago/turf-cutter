@@ -8,7 +8,7 @@ class Voter < ActiveRecord::Base
   end
 
   def geocode
-    latlng = Geokit::Geocoders::GoogleGeocoder.geocode full_address
+    latlng = Geokit::Geocoders::MapboxGeocoder.geocode full_address
     self.latitude = latlng.lat
     self.longitude = latlng.lng
     latlng

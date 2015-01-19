@@ -7,7 +7,7 @@
 </head>
 <body>
 
-  <nav class="top-bar">
+  <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
       <li class="name">
         <h1><a href="/">TurfCutter</a></h1>
@@ -17,9 +17,15 @@
     <section class="top-bar-section">
       <ul class="right">
         <%- if current_user -%>
-          <li><%= link_to 'Add a voter', new_voter_path %></li>
+          <li class="has-dropdown">
+            <a href="#">Voters</a>
+            <ul class="dropdown">
+              <li><%= link_to 'Search voters', new_search_path %></li>
+              <li><%= link_to 'Add a voter', new_voter_path %></li>
+              <li><%= link_to 'View all voters', voters_path %></li>
+            </ul>
+          </li>
           <li><%= link_to 'Lists', lists_path %></li>
-          <li><%= link_to 'Search Voters', new_search_path %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
