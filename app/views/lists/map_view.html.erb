@@ -18,11 +18,11 @@ body { margin:0; padding:0; }
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2hyaXN3YW5kIiwiYSI6Ii15YVZETmcifQ.iwFzK-RnFcNDU_msz06eQQ';
 var map = L.mapbox.map('map', 'chriswand.kdm86mf3');
 
-var featureGroup = L.featureGroup().addTo(map);
+var turfsGroup = L.featureGroup().addTo(map);
 
 var drawControl = new L.Control.Draw({
   edit: {
-    featureGroup: featureGroup
+    featureGroup: turfsGroup
   },
   draw: {
     polygon: true,
@@ -41,19 +41,34 @@ var lists = [];
 
 map.fitBounds(votersLayer.getBounds());
 
-map.on('draw:created', findVoters);
+map.on('draw:created', newTurf);
+map.on('draw:edited', editTurf);
+map.on('draw:deleted', editTurf);
 
-function findVoters(e) {
-  var newTurf = map.addLayer(e.layer);
-  votersInTurf = []
+function newTurf(e) {
+  addTurf(e.layer);
+  votersLayer.setGeoJSON(voters);
+}
+
+function addTurf(e) {
+  var newTurf = turfsGroup.addLayer(e);
+  votersInTurf = [];
   for (var i = 0; i < voters.length; i++) {
-    if (leafletPip.pointInLayer(voters[i].geometry.coordinates, newTurf, true)[0] === e.layer) {
-      voters[i].properties["marker-color"] = "#22FF22";
+    if (leafletPip.pointInLayer(voters[i].geometry.coordinates, newTurf, true)[0] === e) {
+      voters[i].properties["marker-color"] = "#22DD22";
       votersInTurf.push(voters[i]);
     };
   };
-  votersLayer.setGeoJSON(voters);
   lists.push(votersInTurf);
+};
+
+function editTurf(e) {
+  lists = [];
+  for (var i = 0; i < voters.length; i++) {
+    voters[i].properties["marker-color"] = "#FF0000";
+  };
+  turfsGroup.eachLayer(addTurf);
+  votersLayer.setGeoJSON(voters);
 };
 
 $(document).ready(function(){
@@ -71,7 +86,7 @@ $(document).ready(function(){
         voterIDs.push(voter.properties.voter_id);
       };
       listsData.push({ name: listName, voter_ids: voterIDs });
-    }
+    };
     $.ajax({type: "POST",
       url: "/turfs",
       data: { lists: listsData }
