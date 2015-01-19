@@ -45,19 +45,22 @@ map.on('draw:created', findVoters);
 
 function findVoters(e) {
   var newTurf = map.addLayer(e.layer);
-  array = []
+  votersInTurf = []
   for (var i = 0; i < voters.length; i++) {
     if (leafletPip.pointInLayer(voters[i].geometry.coordinates, newTurf, true)[0] === e.layer) {
-      array.push(voters[i]);
+      voters[i].properties["marker-color"] = "#22FF22";
+      votersInTurf.push(voters[i]);
     };
   };
-  lists.push(array)
+  votersLayer.setGeoJSON(voters);
+  lists.push(votersInTurf);
 };
 
 $(document).ready(function(){
   $(".save").click(function(e){
     e.preventDefault();
     var listsName = prompt("Enter a name for these lists");
+    if (listsName === null) {return};
     var listsData = [];
     for (var i = 0; i < lists.length; i++) {
       var list = lists[i];
