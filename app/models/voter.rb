@@ -8,10 +8,7 @@ class Voter < ActiveRecord::Base
   end
 
   def geocode
-    latlng = Geokit::Geocoders::MapboxGeocoder.geocode full_address
-    self.latitude = latlng.lat
-    self.longitude = latlng.lng
-    latlng
+    GeocoderWorker.perform_async(id) unless Rails.env == "test"
   end
 
   def valid_coords?
@@ -23,6 +20,7 @@ class Voter < ActiveRecord::Base
     any_voters = false
     CSV.foreach(file.path, headers: true) do |row|
       voter = Voter.create row.to_hash
+      voter.geocode
       success = false if voter.errors.any?
       any_voters = true
     end

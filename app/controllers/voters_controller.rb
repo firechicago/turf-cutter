@@ -18,7 +18,6 @@ class VotersController < ApplicationController
     @voter = Voter.new(voter_params)
     if @voter.save
       @voter.geocode
-      @voter.save
       flash[:success] = "Voter Created"
       redirect_to voter_path(@voter)
     else
@@ -57,7 +56,7 @@ class VotersController < ApplicationController
       flash[:alert] = "There was an error reading the file you uploaded"
     end
     @voters = Voter.all.page(params[:page])
-    render "voters/index"
+    redirect_to voters_path
   end
 
   private
