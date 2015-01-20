@@ -8,14 +8,7 @@ class Voter < ActiveRecord::Base
   end
 
   def geocode
-    if RAILS_ENV == :test
-      latlng = Geokit::Geocoders::MultiGeocoder.geocode full_address
-      self.latitude = latlng.lat
-      self.longitude = latlng.lng
-      self.save
-    else
-      GeocoderWorker.perform_async(id)
-    end
+    GeocoderWorker.perform_async(id) unless Rails.env == "test"
   end
 
   def valid_coords?

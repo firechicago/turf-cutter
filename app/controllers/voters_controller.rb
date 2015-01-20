@@ -56,7 +56,7 @@ class VotersController < ApplicationController
       flash[:alert] = "There was an error reading the file you uploaded"
     end
     @voters = Voter.all.page(params[:page])
-    render "voters/index"
+    redirect_to voters_path
   end
 
   private
