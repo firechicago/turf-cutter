@@ -15,7 +15,7 @@
   <% @lists.each do |list| %>
     <tr>
       <td><%= link_to list.name, list %></td>
-      <td><%= list.voters.length %></td>
+      <td><%= list.voters.count %></td>
       <td><%= list.created_at %></td>
       <td><%= list.updated_at %></td>
     </tr>

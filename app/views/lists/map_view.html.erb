@@ -39,6 +39,12 @@ var votersLayer = L.mapbox.featureLayer(voters).addTo(map);
 
 var lists = [];
 
+var colorList = [
+"#22DD22",
+"#0000EE",
+"#DDCC00"
+];
+
 map.fitBounds(votersLayer.getBounds());
 
 map.on('draw:created', newTurf);
@@ -48,14 +54,21 @@ map.on('draw:deleted', editTurf);
 function newTurf(e) {
   addTurf(e.layer);
   votersLayer.setGeoJSON(voters);
-}
+};
+
+function rotate(e) {
+  var x = e.shift
+  e.push(x)
+};
 
 function addTurf(e) {
   var newTurf = turfsGroup.addLayer(e);
   votersInTurf = [];
+  var color = colorList.shift();
+  colorList.push(color);
   for (var i = 0; i < voters.length; i++) {
     if (leafletPip.pointInLayer(voters[i].geometry.coordinates, newTurf, true)[0] === e) {
-      voters[i].properties["marker-color"] = "#22DD22";
+      voters[i].properties["marker-color"] = colorList[0];
       votersInTurf.push(voters[i]);
     };
   };
