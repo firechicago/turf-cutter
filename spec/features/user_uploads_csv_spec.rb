@@ -26,9 +26,9 @@ So that I can add large numbers of voters at once
   scenario "uploads an invalid csv", focus: true do
     visit new_voter_path
 
-    attach_file "voters_csv", "spec/support/blank_csv.csv"
+    attach_file "voters_csv", "spec/support/bad_csv.csv"
     click_button "Upload Voters"
 
-    expect(page).to have_content("There was an error reading the file you uploaded")
+    expect(page).to have_content("There were errors reading lines")
   end
 end
