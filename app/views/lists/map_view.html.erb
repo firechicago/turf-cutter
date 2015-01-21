@@ -56,11 +56,6 @@ function newTurf(e) {
   votersLayer.setGeoJSON(voters);
 };
 
-function rotate(e) {
-  var x = e.shift
-  e.push(x)
-};
-
 function addTurf(e) {
   var newTurf = turfsGroup.addLayer(e);
   votersInTurf = [];
@@ -76,6 +71,11 @@ function addTurf(e) {
 };
 
 function editTurf(e) {
+  colorList = [
+  "#22DD22",
+  "#0000EE",
+  "#DDCC00"
+  ];
   lists = [];
   for (var i = 0; i < voters.length; i++) {
     voters[i].properties["marker-color"] = "#FF0000";
