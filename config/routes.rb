@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :lists, only: [:create, :show, :index, :update, :destroy] do
       member do
         get "map_view"
+        get "contact_map"
       end
     end
 

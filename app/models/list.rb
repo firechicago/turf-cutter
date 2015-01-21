@@ -24,4 +24,27 @@ class List < ActiveRecord::Base
     end
     array
   end
+
+  def contact_logging_geojson
+    array = []
+    voters.each do |voter|
+      next unless voter.valid_coords?
+      geojson = {
+        type: "Feature", geometry: {
+          type: "Point",
+          coordinates: [voter.longitude, voter.latitude]
+        },
+        properties: {
+          title: voter.full_name,
+          description: voter.full_address,
+          voter_id: voter.id,
+          url: "/voters/#{voter.id}/contacts/new",
+          "marker-size" => "medium",
+          "marker-color" => "#FF0000"
+        }
+      }
+      array << geojson
+    end
+    array
+  end
 end
