@@ -13,7 +13,7 @@ So that I can see where they are located
     list = FactoryGirl.create(:list)
     visit list_path(list)
 
-    click_link "View this list on a map"
+    click_link "Cut turf from this list"
 
     expect(page).to have_content("Save these turfs")
   end

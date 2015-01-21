@@ -30,6 +30,11 @@ class ListsController < ApplicationController
     @geojson = ActiveSupport::JSON.encode(data)
   end
 
+  def contact_map
+    data = List.find(params[:id]).contact_logging_geojson
+    @geojson = ActiveSupport::JSON.encode(data)
+  end
+
   private
 
   def list_params

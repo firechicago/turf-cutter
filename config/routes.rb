@@ -5,11 +5,15 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :voters, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
       collection { post :import }
+      member do
+        resources :contacts, only: [:new, :create, :show]
+      end
     end
 
     resources :lists, only: [:create, :show, :index, :update, :destroy] do
       member do
         get "map_view"
+        get "contact_map"
       end
     end
 
