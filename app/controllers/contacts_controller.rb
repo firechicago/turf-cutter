@@ -23,6 +23,12 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:user_id, :voter_id, :outcome, :support, :note)
+    params.require(:contact).permit(
+      :user_id,
+      :voter_id,
+      :outcome,
+      :support,
+      :note
+    )
   end
 end

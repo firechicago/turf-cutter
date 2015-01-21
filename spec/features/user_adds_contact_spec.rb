@@ -45,6 +45,8 @@ So that I can keep track of our voter outreach
   scenario "user not signed in" do
     visit new_contact_path(FactoryGirl.create(:voter))
 
-    expect(page).to have_content("You need to sign in or sign up before continuing.")
+    expect(page).to have_content(
+      "You need to sign in or sign up before continuing."
+    )
   end
 end
