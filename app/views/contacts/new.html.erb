@@ -1,10 +1,19 @@
+<% if @contact.errors.any? %>
+  <ul>
+    <% @contact.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @contact do |f| %>
 <div class="row">
   <div class="small-3 columns">
     <%= f.label :outcome, "Outcome" %>
-    <%= f.select :outcome, Contact.poss_outcomes %>
-    <%= f.label :support, "Support (1 is strong support, 5 is strong oppose)" %>
+    <%= f.select :outcome, [[]] + Contact.poss_outcomes %>
+    <%= f.label :support, "Support" %>
     <%= f.select :support, [
+      [],
       ["1 - Strong Support", 1],
       ["2 - Weak Support", 2],
       ["3 - Undecided", 3],

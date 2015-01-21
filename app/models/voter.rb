@@ -5,6 +5,7 @@ class Voter < ActiveRecord::Base
   validates :state, presence: true
   validates :zip, presence: true
   has_many :list_memberships, dependent: :destroy
+  has_many :contacts
 
   def full_name
     "#{first_name} #{last_name}"

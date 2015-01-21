@@ -8,6 +8,7 @@ class VotersController < ApplicationController
     @list_membership = ListMembership.new
     @lists = []
     List.all.each { |list| @lists << [list.name, list.id] }
+    @contacts = @voter.contacts
   end
 
   def new

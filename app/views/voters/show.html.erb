@@ -30,3 +30,5 @@
     <%= link_to "Log new contact", new_contact_path(@voter), class: "button" %>
   </div>
 </div>
+
+<%= render partial: "contacts/show", locals: { voter: @voter } %>

@@ -5,13 +5,15 @@ class ContactsController < ApplicationController
   end
 
   def create
-    contact = Contact.new(contact_params)
-    if contact.save
+    @contact = Contact.new(contact_params)
+    if @contact.save
       flash[:success] = "Contact Logged"
-      redirect_to voter_path(contact.voter_id)
+      redirect_to voter_path(@contact.voter_id)
     else
+      @voter = Voter.find(@contact.voter_id)
       flash[:alert] = "Save Failed"
-      render "contacts#new"
+      # binding.pry
+      render "new"
     end
   end
 
