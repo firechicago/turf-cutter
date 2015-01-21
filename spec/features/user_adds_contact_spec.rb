@@ -38,12 +38,12 @@ So that I can keep track of our voter outreach
 
     click_button "Log Contact"
 
-    expect(page).to have_content("Error")
-    expect(page).to have_content("Result can't be blank")
+    expect(page).to have_content("Save Failed")
+    expect(page).to have_content("Outcome can't be blank")
   end
 
   scenario "user not signed in" do
-    visit new_contact_voter_path(FactoryGirl.create(:voter))
+    visit new_contact_path(FactoryGirl.create(:voter))
 
     expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
