@@ -42,7 +42,8 @@ var lists = [];
 var colorList = [
 "#22DD22",
 "#0000EE",
-"#DDCC00"
+"#DDDD00",
+"#FF8000"
 ];
 
 map.fitBounds(votersLayer.getBounds());
@@ -57,13 +58,14 @@ function newTurf(e) {
 };
 
 function addTurf(e) {
-  var newTurf = turfsGroup.addLayer(e);
-  votersInTurf = [];
   var color = colorList.shift();
   colorList.push(color);
+  e.options.color = color
+  var newTurf = turfsGroup.addLayer(e);
+  votersInTurf = [];
   for (var i = 0; i < voters.length; i++) {
     if (leafletPip.pointInLayer(voters[i].geometry.coordinates, newTurf, true)[0] === e) {
-      voters[i].properties["marker-color"] = colorList[0];
+      voters[i].properties["marker-color"] = color;
       votersInTurf.push(voters[i]);
     };
   };
@@ -74,7 +76,8 @@ function editTurf(e) {
   colorList = [
   "#22DD22",
   "#0000EE",
-  "#DDCC00"
+  "#DDCC00",
+  "#FF8000"
   ];
   lists = [];
   for (var i = 0; i < voters.length; i++) {
