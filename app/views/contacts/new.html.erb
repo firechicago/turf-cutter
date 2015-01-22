@@ -1,14 +1,16 @@
-<% if @contact.errors.any? %>
-  <ul>
-    <% @contact.errors.full_messages.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="flash alert-box alert">
+  <% if @contact.errors.any? %>
+    <ul>
+      <% @contact.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
 <%= form_for @contact do |f| %>
 <div class="row">
-  <div class="small-3 columns">
+  <div class="small-6 columns small-centered">
     <%= f.label :outcome, "Outcome" %>
     <%= f.select :outcome, [[]] + Contact.poss_outcomes %>
     <%= f.label :support, "Support" %>

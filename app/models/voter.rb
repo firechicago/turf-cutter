@@ -12,7 +12,7 @@ class Voter < ActiveRecord::Base
   end
 
   def full_address
-    "#{address1} #{city}, #{state} #{zip}"
+    "#{address1} #{address2}, #{city}, #{state} #{zip}"
   end
 
   def geocode
