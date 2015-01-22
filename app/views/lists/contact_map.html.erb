@@ -24,7 +24,6 @@ votersLayer.on('layeradd', function(e) {
   var marker = e.layer,
   feature = marker.feature;
 
-  // Create custom popup content
   var popupContent = '<h3>' + e.layer.feature.properties.title + '</h3>' +
   '<p>' + e.layer.feature.properties.description + "</p>" +
   '<%= form_for @contact do |f| %>' +

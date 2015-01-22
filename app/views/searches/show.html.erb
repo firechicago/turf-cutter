@@ -1,35 +1,39 @@
-<table>
-  <thead>
-    <tr>
-      <th>Voter Name</th>
-      <th>Street Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-    </tr>
-  </thead>
-  <% @voters.each do |voter| %>
-  <tr>
-    <td><%= link_to voter.full_name, voter %></td>
-    <td><%= "#{voter.address1} #{voter.address2}" %></td>
-    <td><%= voter.city %></td>
-    <td><%= voter.state %></td>
-    <td><%= voter.zip %></td>
-  </tr>
+<div class="row">
+  <div class="small-8 columns small-centered">
+    <table>
+      <thead>
+        <tr>
+          <th>Voter Name</th>
+          <th>Street Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+        </tr>
+      </thead>
+      <% @voters.each do |voter| %>
+      <tr>
+        <td><%= link_to voter.full_name, voter %></td>
+        <td><%= "#{voter.address1} #{voter.address2}" %></td>
+        <td><%= voter.city %></td>
+        <td><%= voter.state %></td>
+        <td><%= voter.zip %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <%= paginate @voters %>
+
+  <%= form_for @list do |f| %>
+
+  <div>
+    <%= f.label :name, "List Name" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.hidden_field :search_id, value: @search.id %>
+
+  <%= f.submit "Save this list", class: "button" %>
+
   <% end %>
-</table>
-
-<%= paginate @voters %>
-
-<%= form_for @list do |f| %>
-
-<div>
-  <%= f.label :name, "List Name" %>
-  <%= f.text_field :name %>
 </div>
-
-<%= f.hidden_field :search_id, value: @search.id %>
-
-<%= f.submit "Save this list", class: "button" %>
-
-<% end %>

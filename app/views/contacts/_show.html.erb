@@ -1,5 +1,15 @@
-<% @contacts.each do |contact| %>
-  <p><%= contact.outcome %></p>
-  <p><%= contact.support %></p>
-  <p><%= contact.note %></p>
-<% end %>
+<div class="row">
+<div class="small-9 columns small-centered">
+  <h2>Contacts</h2>
+  <% @contacts.each do |contact| %>
+    <table>
+      <thead>
+        <tr><th><%= contact.created_at %></th><th></th></tr>
+      </thead>
+      <tr><th>Outcome</th><td><%= contact.outcome %></td></tr>
+      <tr><th>Support</th><td><%= contact.support %></td></tr>
+      <tr><th>Notes</th><td><%= contact.note %></td></tr>
+    </table>
+  <% end %>
+</div>
+</div>

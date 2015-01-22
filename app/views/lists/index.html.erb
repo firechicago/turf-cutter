@@ -1,24 +1,28 @@
 <div class="row">
-  <div class= "small-5 columns">
+  <div class= "small-6 columns small-centered">
     <h1>Voter Lists</h1>
   </div>
 </div>
-<table>
-  <thead>
-    <tr>
-      <th>List name</th>
-      <th>Number of Voters</th>
-      <th>List created</th>
-      <th>Last updated</th>
-    </tr>
-  </thead>
-  <% @lists.each do |list| %>
-    <tr>
-      <td><%= link_to list.name, list %></td>
-      <td><%= list.voters.count %></td>
-      <td><%= list.created_at %></td>
-      <td><%= list.updated_at %></td>
-    </tr>
-  <% end %>
-</table>
-<%= paginate @lists %>
+<div class="row">
+  <div class= "small-11 columns small-centered">
+    <table>
+      <thead>
+        <tr>
+          <th>List name</th>
+          <th>Number of Voters</th>
+          <th>List created</th>
+          <th>Last updated</th>
+        </tr>
+      </thead>
+      <% @lists.each do |list| %>
+        <tr>
+          <td><%= link_to list.name, list %></td>
+          <td><%= list.voters.count %></td>
+          <td><%= list.created_at %></td>
+          <td><%= list.updated_at %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= paginate @lists %>
+  </div>
+</div>

@@ -3,60 +3,62 @@
     <h1>Edit a new voter</h1>
   </div>
 </div>
-<%= form_for @voter do |f| %>
-  <%if @voter.errors.any? %>
-  <ul>
-    <% @voter.errors.full_messages.each do |msg|%>
-    <li><%= msg %></li>
+<div class="row">
+  <%= form_for @voter do |f| %>
+    <%if @voter.errors.any? %>
+    <ul>
+      <% @voter.errors.full_messages.each do |msg|%>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
+    <div class="row">
+      <div class= "small-5 columns">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+      </div>
+
+      <div class= "small-5 columns left">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+      </div>
+    </div>
+    <div class= "row">
+      <div class= "small-5 columns">
+        <div>
+          <%= f.label :address1 %>
+          <%= f.text_field :address1 %>
+        </div>
+
+        <div>
+          <%= f.label :address2 %>
+          <%= f.text_field :address2 %>
+        </div>
+      </div>
+
+      <div class= "small-5 columns left">
+        <div>
+          <%= f.label :city %>
+          <%= f.text_field :city %>
+        </div>
+
+        <div>
+          <%= f.label :state %>
+          <%= f.text_field :state %>
+        </div>
+
+        <div>
+          <%= f.label :zip %>
+          <%= f.text_field :zip %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit 'Update Voter', class: "button" %>
+
+
   <% end %>
-  <div class="row">
-    <div class= "small-5 columns">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </div>
 
-    <div class= "small-5 columns left">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </div>
-  </div>
-  <div class= "row">
-    <div class= "small-5 columns">
-      <div>
-        <%= f.label :address1 %>
-        <%= f.text_field :address1 %>
-      </div>
-
-      <div>
-        <%= f.label :address2 %>
-        <%= f.text_field :address2 %>
-      </div>
-    </div>
-
-    <div class= "small-5 columns left">
-      <div>
-        <%= f.label :city %>
-        <%= f.text_field :city %>
-      </div>
-
-      <div>
-        <%= f.label :state %>
-        <%= f.text_field :state %>
-      </div>
-
-      <div>
-        <%= f.label :zip %>
-        <%= f.text_field :zip %>
-      </div>
-    </div>
-  </div>
-
-  <%= f.submit 'Update Voter', class: "button" %>
-
-
-<% end %>
-
-<%= link_to "Delete this voter", voter_path(@voter), method: :delete,
-    data:{ confirm: 'Are you sure?' }, class: "button" %>
+  <%= link_to "Delete this voter", voter_path(@voter), method: :delete,
+      data:{ confirm: 'Are you sure?' }, class: "button" %>
+</div>
