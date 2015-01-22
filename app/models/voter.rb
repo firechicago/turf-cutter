@@ -24,14 +24,14 @@ class Voter < ActiveRecord::Base
   end
 
   def self.import(file)
-    success = true
-    any_voters = false
+    errors = []
+    index = 2
     CSV.foreach(file.path, headers: true) do |row|
       voter = Voter.create row.to_hash
       voter.geocode
-      success = false if voter.errors.any?
-      any_voters = true
+      errors << index if voter.errors.any?
+      index += 1
     end
-    success && any_voters
+    errors
   end
 end

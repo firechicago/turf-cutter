@@ -51,10 +51,11 @@ class VotersController < ApplicationController
   end
 
   def import
-    if Voter.import(params[:voters_csv])
+    errors = Voter.import(params[:voters_csv])
+    if errors.length == 0
       flash[:success] = "Voters successfully uploaded"
     else
-      flash[:alert] = "There was an error reading the file you uploaded"
+      flash[:alert] = "There were errors reading lines:" + errors.to_s
     end
     @voters = Voter.all.page(params[:page])
     redirect_to voters_path
