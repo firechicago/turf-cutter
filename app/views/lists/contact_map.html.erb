@@ -25,13 +25,35 @@ votersLayer.on('layeradd', function(e) {
   feature = marker.feature;
 
   // Create custom popup content
-  var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
-  feature.properties.title + '<br>' + feature.properties.description +
-  '</a>';
+  var popupContent = '<h3>' + e.layer.feature.properties.title + '</h3>' +
+  '<p>' + e.layer.feature.properties.description + "</p>" +
+  '<%= form_for @contact do |f| %>' +
+  '<%= f.label :outcome, "Outcome" %>' +
+  '<select name="contact[outcome]" id="contact_outcome"><option value=""></option>' +
+  '<option value="Contacted">Contacted</option>' +
+  '<option value="Not Home">Not Home</option>' +
+  '<option value="Moved">Moved</option>' +
+  '<option value="Deceased">Deceased</option>' +
+  '<option value="Inaccessible">Inaccessible</option>' +
+  '<option value="Left Message">Left Message</option></select>' +
+  '<%= f.label :support, "Support" %>' +
+  '<select name="contact[support]" id="contact_support"><option value=""></option>' +
+  '<option value="1">1 - Strong Support</option>' +
+  '<option value="2">2 - Weak Support</option>' +
+  '<option value="3">3 - Undecided</option>' +
+  '<option value="4">4 - Weak Opposition</option>' +
+  '<option value="5">5 - Strong Opposition</option></select>' +
+  '<%= f.label :note, "Notes" %>' +
+  '<textarea name="contact[note]" id="contact_note">' +
+  '</textarea>' +
+  '<input type="hidden" name="contact[voter_id]", id="contact_voter_id" value="' + e.layer.feature.properties.voter_id + '">' +
+  '<%= f.hidden_field :user_id, value: current_user.id %>' +
+  '<%= f.submit "Log Contact", class: "button inline"%>' +
+  '<% end %>';
 
   // http://leafletjs.com/reference.html#popup
   marker.bindPopup(popupContent,{
-    closeButton: false,
+    closeButton: true,
   });
 });
 
