@@ -3,6 +3,14 @@ class List < ActiveRecord::Base
   has_many :list_memberships, dependent: :destroy
   validates :name, presence: true
 
+  def add_voters(voters)
+    memberships = []
+    voters.each do |voter|
+      memberships << ListMembership.new(voter_id: voter.id, list_id: id)
+    end
+    ListMembership.import(memberships)
+  end
+
   def to_geojson_array
     array = []
     voters.each do |voter|

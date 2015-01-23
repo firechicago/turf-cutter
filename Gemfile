@@ -57,3 +57,5 @@ gem 'kaminari'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'rails_12factor', group: :production
 gem 'sidekiq'
+gem 'rack-mini-profiler', groups: [:development, :test]
+gem 'activerecord-import'

@@ -4,7 +4,7 @@ class Search < ActiveRecord::Base
   end
 
   def num_voters
-    voters.length
+    voters.count
   end
 
   private
