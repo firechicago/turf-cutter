@@ -54,7 +54,7 @@
   </div>
 </div>
 <div class="row">
-<%= f.submit 'Add this voter', class: "button" %>
+<%= f.submit 'Add this voter', class: "button round" %>
 </div>
 <% end %>
 
@@ -62,6 +62,6 @@
 <h1>Upload Voters in CSV format</h1>
 <%= form_tag import_voters_path, multipart: true do %>
   <%= file_field_tag :voters_csv %>
-  <%= submit_tag "Upload Voters", class: "button" %>
+  <%= submit_tag "Upload Voters", class: "button round" %>
 <% end %>
 </div>
