@@ -47,7 +47,7 @@ votersLayer.on('layeradd', function(e) {
   '</textarea>' +
   '<input type="hidden" name="contact[voter_id]", id="contact_voter_id" value="' + e.layer.feature.properties.voter_id + '">' +
   '<%= f.hidden_field :user_id, value: current_user.id %>' +
-  '<%= f.submit "Log Contact", class: "button inline"%>' +
+  '<%= f.submit "Log Contact", class: "button round inline"%>' +
   '<% end %>';
 
   // http://leafletjs.com/reference.html#popup

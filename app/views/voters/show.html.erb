@@ -17,17 +17,17 @@
       <%= f.label :list_id, "List" %>
       <%= f.select :list_id, @lists %>
       <%= f.hidden_field :voter_id, value: @voter.id %>
-      <%= f.submit "Add to list", class: "button inline"%>
+      <%= f.submit "Add to list", class: "button round inline"%>
     </div>
   </div>
 <% end %>
 
 <div class="row">
   <div class="columns">
-    <%= link_to "Edit this voter", edit_voter_path, class: "button" %>
+    <%= link_to "Edit this voter", edit_voter_path, class: "button round" %>
   </div>
   <div class="columns">
-    <%= link_to "Log new contact", new_contact_path(@voter), class: "button" %>
+    <%= link_to "Log new contact", new_contact_path(@voter), class: "button round" %>
   </div>
 </div>
 

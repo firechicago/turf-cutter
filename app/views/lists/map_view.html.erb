@@ -11,8 +11,10 @@ body { margin:0; padding:0; }
 </style>
 
 <div id='map'></div>
-
-<div class='save button right'>Save these turfs</div>
+<div class='right small-2 columns' style='background-color:#333333'>
+<%= text_field_tag 'turf_name', 'List name', style: 'margin-top:1em' %>
+<div class='save button round right' >Save these turfs</div>
+</div>
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2hyaXN3YW5kIiwiYSI6Ii15YVZETmcifQ.iwFzK-RnFcNDU_msz06eQQ';
@@ -90,7 +92,7 @@ function editTurf(e) {
 $(document).ready(function(){
   $(".save").click(function(e){
     e.preventDefault();
-    var listsName = prompt("Enter a name for these lists");
+    var listsName = $('#turf_name').val();
     if (listsName === null) {return};
     var listsData = [];
     for (var i = 0; i < lists.length; i++) {
