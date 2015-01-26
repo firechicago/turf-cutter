@@ -25,7 +25,7 @@ class Voter < ActiveRecord::Base
 
   def self.import(file)
     errors = []
-    return ["Please select a file"] unless file
+    return "Please select a file" unless file
     index = 2
     CSV.foreach(file.path, headers: true) do |row|
       voter = Voter.create row.to_hash
