@@ -12,8 +12,9 @@ body { margin:0; padding:0; }
 
 <div id='map'></div>
 <div class='right small-2 columns' style='background-color:#333333'>
-<%= text_field_tag 'turf_name', 'List name', style: 'margin-top:1em' %>
-<div class='save button round right' >Save these turfs</div>
+  <%= text_field_tag 'turf_name', 'List name', style: 'margin-top:1em' %>
+  <div class='save button round right' >Save these turfs</div>
+  <div class='turflist' style='color:white;'></div>
 </div>
 
 <script>
@@ -72,6 +73,7 @@ function addTurf(e) {
     };
   };
   lists.push(votersInTurf);
+  $(".turflist").html(describeTurfs(lists));
 };
 
 function editTurf(e) {
@@ -87,6 +89,15 @@ function editTurf(e) {
   };
   turfsGroup.eachLayer(addTurf);
   votersLayer.setGeoJSON(voters);
+};
+
+function describeTurfs(turfsData) {
+  var description = "<ul>";
+  for (var i = 0; i < turfsData.length; i++) {
+    description += "<li>Turf " + (i + 1) + " - " + turfsData[i].length + " voters</li>";
+    };
+  description += "</ul>"
+  return description
 };
 
 $(document).ready(function(){
