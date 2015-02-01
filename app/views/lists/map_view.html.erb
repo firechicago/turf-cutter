@@ -15,7 +15,7 @@ body { margin:0; padding:0; }
 <%= text_field_tag 'turf_name', 'List name', style: 'margin-top:1em' %>
 <div class='save button round right' >Save these turfs</div>
 </div>
-<div class='right small-2 columns turflist' style='background-color:#333333'>
+<div class='right small-2 columns turflist' style='background-color:#333333; color:white;'>
 </div>
 
 <script>
@@ -93,10 +93,9 @@ function editTurf(e) {
 };
 
 function describeTurfs(turfsData) {
-  debugger;
   var description = "<ul>";
   for (var i = 0; i < turfsData.length; i++) {
-    description += "<li>Turf " + (i + 1) + "</li>";
+    description += "<li>Turf " + (i + 1) + " - " + turfsData[i].length + " voters</li>";
     };
   description += "</ul>"
   return description
