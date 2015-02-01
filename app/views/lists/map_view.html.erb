@@ -12,10 +12,9 @@ body { margin:0; padding:0; }
 
 <div id='map'></div>
 <div class='right small-2 columns' style='background-color:#333333'>
-<%= text_field_tag 'turf_name', 'List name', style: 'margin-top:1em' %>
-<div class='save button round right' >Save these turfs</div>
-</div>
-<div class='right small-2 columns turflist' style='background-color:#333333; color:white;'>
+  <%= text_field_tag 'turf_name', 'List name', style: 'margin-top:1em' %>
+  <div class='save button round right' >Save these turfs</div>
+  <div class='turflist' style='color:white;'></div>
 </div>
 
 <script>
