@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/firechicago/turf-cutter.svg?branch=master)](https://travis-ci.org/firechicago/turf-cutter) [![Code Climate](https://codeclimate.com/github/firechicago/turf-cutter.png)](https://codeclimate.com/github/firechicago/turf-cutter) [![Coverage Status](https://img.shields.io/coveralls/firechicago/turf-cutter.svg)](https://coveralls.io/r/firechicago/turf-cutter?branch=master)
 
-Turf Cutter is a prototype open-source voter-file management system for political campaigns.
+Turf Cutter is a prototype open-source voter-file management system for political campaigns. You can see a live version at http://turf-cutter.herokuapp.com/.
 
 Turf Cutter relies on a Sidekiq worker process to make asynchronous calls to the Mapbox and Google Maps geocoding APIs to provide latitude and longitude for voters.
 
