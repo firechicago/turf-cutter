@@ -2,6 +2,14 @@
   <div class= "small-5 columns">
     <h1><%= @list.name %></h1>
   </div>
+  <%= link_to "Cut turf from this list",
+              map_view_list_path,
+              class: "small-3 columns button round",
+              style: "margin:5px"  %>
+  <%= link_to "Log contacts from map",
+              contact_map_list_path,
+              class: "small-3 columns button round",
+              style: "margin:5px"   %>
 </div>
 <div class="row">
   <table>
@@ -31,6 +39,4 @@
     <% end %>
   </table>
   <%= paginate @voters %>
-  <%= link_to "Cut turf from this list", map_view_list_path, class: "button round" %>
-  <%= link_to "Log contacts from map", contact_map_list_path, class: "button round" %>
 </div>
