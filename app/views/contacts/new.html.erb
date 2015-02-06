@@ -1,12 +1,13 @@
-<div class="flash alert-box alert">
-  <% if @contact.errors.any? %>
+<% if @contact.errors.any? %>
+  <div class="flash alert-box alert">
     <ul>
       <% @contact.errors.full_messages.each do |error| %>
         <li><%= error %></li>
       <% end %>
     </ul>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
 
 <%= form_for @contact do |f| %>
 <div class="row">
