@@ -11,7 +11,7 @@ class List < ActiveRecord::Base
     ListMembership.import(memberships)
   end
 
-  def to_geojson_array
+  def turf_cutting_geojson
     array = []
     voters.each do |voter|
       next unless voter.valid_coords?

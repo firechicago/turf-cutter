@@ -24,7 +24,7 @@ class ListsController < ApplicationController
   end
 
   def map_view
-    data = List.find(params[:id]).to_geojson_array
+    data = List.find(params[:id]).turf_cutting_geojson
     @geojson = ActiveSupport::JSON.encode(data)
   end
 
