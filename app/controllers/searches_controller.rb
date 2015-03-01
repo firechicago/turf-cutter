@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
     when 1
       flash[:success] = "1 voter found"
     else
-      flash[:success] = "#{@search.voters.length} voters found"
+      flash[:success] = "#{@search.num_voters} voters found"
     end
     redirect_to @search
   end
